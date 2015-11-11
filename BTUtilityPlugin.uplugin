@@ -1,0 +1,21 @@
+{
+	"FileVersion" : 3,
+	
+	"FriendlyName" : "BT Utility",
+	"Description" : "Adds nodes for extending behavior tree with utility-based selection.",
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"CreatedBy" : "Cameron Angus",
+	"EngineVersion" : "4.9.0",
+	"Category" : "Kantan Dev",
+	"CanContainContent" : false,
+	"EnabledByDefault" : true,
+	
+	"Modules" :
+	[
+		{
+			"Name" : "BTUtilityPlugin",
+			"Type" : "Runtime"
+		}
+	]
+}
