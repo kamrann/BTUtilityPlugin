@@ -21,7 +21,7 @@ void UBTDecorator_UtilityBlackboard::InitializeFromAsset(UBehaviorTree& Asset)
 {
 	Super::InitializeFromAsset(Asset);
 
-	UtilityValueKey.CacheSelectedKey(GetBlackboardAsset());
+	UtilityValueKey.ResolveSelectedKey(*GetBlackboardAsset());
 }
 
 float UBTDecorator_UtilityBlackboard::CalculateUtilityValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const
