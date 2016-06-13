@@ -13,7 +13,8 @@ public class BTUtilityPlugin : ModuleRules
                 "Core",
                 "CoreUObject",
                 "Engine",
-                "AIModule"
+                "AIModule",
+				"GameplayTasks"
             }
         );
 	}
