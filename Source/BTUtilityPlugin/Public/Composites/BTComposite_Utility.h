@@ -5,8 +5,6 @@
 #include "BTUtilityTypes.h"
 #include "BTComposite_Utility.generated.h"
 
-#define ALLOW_CUSTOM_UTILITY_SELECTION FALSE
-
 
 UENUM()
 enum class EUtilitySelectionMethod: uint8
@@ -16,11 +14,6 @@ enum class EUtilitySelectionMethod: uint8
 
 	// Selection probability is proportional to utility value
 	Proportional,
-
-#if ALLOW_CUSTOM_UTILITY_SELECTION
-	// Custom selection method
-	Custom,
-#endif
 };
 
 struct FBTUtilityMemory : public FBTCompositeMemory
@@ -45,11 +38,6 @@ public:
 	// Method used to determine child selection based on utility values
 	UPROPERTY(EditAnywhere, Category = "Utility")
 	EUtilitySelectionMethod SelectionMethod;
-
-#if ALLOW_CUSTOM_UTILITY_SELECTION
-	UPROPERTY(EditAnywhere, Instanced, NoClear, Category = "Utility")
-	class UBTUtilitySelectionMethod* CustomSelection;
-#endif
 
 public:
 	virtual void InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, EBTMemoryInit::Type InitType) const override;

@@ -3,7 +3,6 @@
 #include "BTUtilityPluginPCH.h"
 #include "Composites/BTComposite_Utility.h"
 #include "Decorators/BTDecorator_UtilityFunction.h"
-#include "BTUtilitySelectionMethod.h"
 #include "UtilitySelectionMethods/BTUtilitySelectionMethod_Highest.h"
 #include "UtilitySelectionMethods/BTUtilitySelectionMethod_Proportional.h"
 
@@ -14,10 +13,6 @@ UBTComposite_Utility::UBTComposite_Utility(const FObjectInitializer& ObjectIniti
 	bUseNodeActivationNotify = true;
 
 	SelectionMethod = EUtilitySelectionMethod::Priority;
-
-#if ALLOW_CUSTOM_UTILITY_SELECTION
-	SelectionMethod = CreateDefaultSubobject< UBTUtilitySelectionMethod_Highest >(TEXT("DefaultCreatedSelectionMethod"));
-#endif
 
 	OnNextChild.BindUObject(this, &UBTComposite_Utility::GetNextChildHandler);
 }
@@ -41,11 +36,6 @@ FString UBTComposite_Utility::GetStaticDescription() const
 
 	case EUtilitySelectionMethod::Proportional:
 		return TEXT("Proportional selection");
-
-#if ALLOW_CUSTOM_UTILITY_SELECTION
-	case EUtilitySelectionMethod::Custom:
-		return CustomSelection->GetDesc();
-#endif
 
 	default:
 		check(false);
@@ -129,11 +119,6 @@ void UBTComposite_Utility::NotifyNodeActivation(FBehaviorTreeSearchData& SearchD
 	case EUtilitySelectionMethod::Proportional:
 		UtilitySelection::ProportionalOrdering(UtilityValues, NodeMemory->ExecutionOrdering);
 		break;
-#if ALLOW_CUSTOM_UTILITY_SELECTION
-	case EUtilitySelectionMethod::Custom:
-		CustomSelection->GenerateOrdering(UtilityValues, NodeMemory->ExecutionOrdering);
-		break;
-#endif
 	default:
 		check(false);
 	}

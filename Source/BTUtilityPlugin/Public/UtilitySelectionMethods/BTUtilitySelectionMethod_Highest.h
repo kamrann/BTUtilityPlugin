@@ -1,7 +1,7 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved. /
 #pragma once
 
-#include "BTUtilitySelectionMethod.h"
+#include "BTUtilityTypes.h"
 
 
 namespace UtilitySelection
