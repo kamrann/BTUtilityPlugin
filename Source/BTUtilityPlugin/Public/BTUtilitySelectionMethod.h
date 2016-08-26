@@ -8,7 +8,7 @@
 /** 
  * A utility selection method chooses from a list of options each of which has an associated utility value.
  */
-UCLASS(Abstract, Within = BTComposite_Utility, EditInlineNew)
+UCLASS(Abstract, EditInlineNew)
 class BTUTILITYPLUGIN_API UBTUtilitySelectionMethod : public UObject
 {
 	GENERATED_BODY()
