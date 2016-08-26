@@ -6,7 +6,7 @@
 	"Version" : 1,
 	"VersionName" : "1.0",
 	"CreatedBy" : "Cameron Angus",
-	"EngineVersion" : "4.11.0",
+	"EngineVersion" : "4.11",
 	"Category" : "Kantan Dev",
 	"CanContainContent" : false,
 	"EnabledByDefault" : true,
