@@ -6,6 +6,8 @@ public class BTUtilityPlugin : ModuleRules
 {
 	public BTUtilityPlugin(TargetInfo Target)
 	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
         PrivateIncludePaths.Add("BTUtilityPlugin/Private");
 
 		PublicDependencyModuleNames.AddRange(

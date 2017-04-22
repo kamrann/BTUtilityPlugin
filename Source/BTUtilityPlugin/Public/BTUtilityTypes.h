@@ -1,5 +1,8 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
+
 #pragma once
+
+#include "CoreMinimal.h"
 
 
 #define MAX_UTILITY_CHILDREN 16

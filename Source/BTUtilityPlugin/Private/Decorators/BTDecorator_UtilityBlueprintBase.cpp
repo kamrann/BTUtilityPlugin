@@ -1,7 +1,8 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
 
-#include "BTUtilityPluginPCH.h"
 #include "Decorators/BTDecorator_UtilityBlueprintBase.h"
+
+#include "AIController.h"
 
 
 UBTDecorator_UtilityBlueprintBase::UBTDecorator_UtilityBlueprintBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)

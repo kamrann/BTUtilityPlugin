@@ -1,6 +1,5 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
 
-#include "BTUtilityPluginPCH.h"
 #include "Decorators/BTDecorator_UtilityBlackboard.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Float.h"

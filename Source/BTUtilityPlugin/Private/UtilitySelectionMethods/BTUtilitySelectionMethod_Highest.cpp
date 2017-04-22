@@ -1,6 +1,5 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
 
-#include "BTUtilityPluginPCH.h"
 #include "UtilitySelectionMethods/BTUtilitySelectionMethod_Highest.h"
 
 

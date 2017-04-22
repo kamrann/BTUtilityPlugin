@@ -1,4 +1,5 @@
-// Copyright 2015 Cameron Angus. All Rights Reserved. /
+// Copyright 2015 Cameron Angus. All Rights Reserved. 
+
 #pragma once
 
 #include "BTUtilityTypes.h"

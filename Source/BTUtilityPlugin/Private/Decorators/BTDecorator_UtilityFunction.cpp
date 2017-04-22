@@ -1,8 +1,7 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
 
-#include "BTUtilityPluginPCH.h"
-#include "BehaviorTree/BTCompositeNode.h"
 #include "Decorators/BTDecorator_UtilityFunction.h"
+#include "BehaviorTree/BTCompositeNode.h"
 
 
 UBTDecorator_UtilityFunction::UBTDecorator_UtilityFunction(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
