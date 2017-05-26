@@ -4,7 +4,7 @@ using UnrealBuildTool;
 
 public class BTUtilityPlugin : ModuleRules
 {
-	public BTUtilityPlugin(ReadOnlyTargetRules Target): base(Target)
+	public BTUtilityPlugin(TargetInfo Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
