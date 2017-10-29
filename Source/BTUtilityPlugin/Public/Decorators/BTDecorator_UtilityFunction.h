@@ -15,7 +15,7 @@ class BTUTILITYPLUGIN_API UBTDecorator_UtilityFunction : public UBTDecorator
 	GENERATED_BODY()
 
 public:
-	UBTDecorator_UtilityFunction(const FObjectInitializer& ObjectInitializer);
+	UBTDecorator_UtilityFunction();
 
 	/** wrapper for node instancing: CalculateUtilityValue */
 	float WrappedCalculateUtility(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const;
@@ -25,7 +25,4 @@ protected:
 	virtual float CalculateUtilityValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const;
 };
 
-
-//////////////////////////////////////////////////////////////////////////
-// Inlines
 

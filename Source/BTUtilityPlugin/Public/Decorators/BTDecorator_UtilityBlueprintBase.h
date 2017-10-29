@@ -1,43 +1,23 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved.
 #pragma once
 
-#include "BTDecorator_UtilityFunction.h"
+#include "BehaviorTree/Decorators/BTDecorator_BlueprintBase.h"
 #include "BTDecorator_UtilityBlueprintBase.generated.h"
-
-/*
-@TODO: Look into what the purpose is of PropertyData in the other blueprint base classes, may need to
-duplicate it.
-*/
 
 
 UCLASS(Abstract, Blueprintable)
-class BTUTILITYPLUGIN_API UBTDecorator_UtilityBlueprintBase : public UBTDecorator_UtilityFunction
+class BTUTILITYPLUGIN_API UBTDecorator_UtilityBlueprintBase : public UBTDecorator_BlueprintBase
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
-	/* UBTDecorator_UtilityFunction interface */
-	virtual float CalculateUtilityValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const override;
-	/**/
+public:
+	UBTDecorator_UtilityBlueprintBase();
 
-	virtual FString GetStaticDescription() const override;
-	virtual void DescribeRuntimeValues(const UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, EBTDescriptionVerbosity::Type Verbosity, TArray< FString >& Values) const override;
-
-	virtual void SetOwner(AActor* ActorOwner) override;
-
-#if WITH_EDITOR
-	virtual bool UsesBlueprint() const override;
-#endif
+public:
+	float WrappedCalculateUtility() const;
 
 protected:
-	/** Cached AIController owner of BehaviorTreeComponent. */
-	UPROPERTY(Transient)
-	AAIController* AIOwner;
-
-	/** Cached actor owner of BehaviorTreeComponent. */
-	UPROPERTY(Transient)
-	AActor* ActorOwner;
-
-protected:
+	/** The utility calculation function, to be implemented in derived blueprints. */
 	UFUNCTION(BlueprintImplementableEvent, Category = Utility)
 	float CalculateUtility(AAIController* OwnerController, APawn* ControlledPawn) const;
 };

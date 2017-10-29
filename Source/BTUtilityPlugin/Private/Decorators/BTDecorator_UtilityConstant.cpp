@@ -3,7 +3,7 @@
 #include "Decorators/BTDecorator_UtilityConstant.h"
 
 
-UBTDecorator_UtilityConstant::UBTDecorator_UtilityConstant(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UBTDecorator_UtilityConstant::UBTDecorator_UtilityConstant()
 {
 	NodeName = "Constant Utility";
 	UtilityValue = 0.0f;

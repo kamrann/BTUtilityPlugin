@@ -16,8 +16,12 @@ class UBehaviorTree;
 UCLASS(Meta = (DisplayName = "Blackboard Utility", Category = "Utility Functions"))
 class BTUTILITYPLUGIN_API UBTDecorator_UtilityBlackboard : public UBTDecorator_UtilityFunction
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
+public:
+	UBTDecorator_UtilityBlackboard();
+
+public:
 	/** initialize any asset related data */
 	virtual void InitializeFromAsset(UBehaviorTree& Asset) override;
 

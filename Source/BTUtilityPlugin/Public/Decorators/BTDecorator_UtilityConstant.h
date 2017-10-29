@@ -14,11 +14,13 @@ class BTUTILITYPLUGIN_API UBTDecorator_UtilityConstant : public UBTDecorator_Uti
 	GENERATED_BODY()
 
 public:
-	UBTDecorator_UtilityConstant(const FObjectInitializer& ObjectInitializer);
-
 	UPROPERTY(EditAnywhere, Category = "Utility")
 	float UtilityValue;
 
+public:
+	UBTDecorator_UtilityConstant();
+
+public:
 	virtual FString GetStaticDescription() const override;
 	virtual void DescribeRuntimeValues(const UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, EBTDescriptionVerbosity::Type Verbosity, TArray<FString>& Values) const override;
 

@@ -2,11 +2,13 @@
 
 #include "Composites/BTComposite_Utility.h"
 #include "Decorators/BTDecorator_UtilityFunction.h"
+#include "Decorators/BTDecorator_UtilityBlueprintBase.h"
+#include "Decorators/UtilityFunctionTypeErasure.h"
 #include "UtilitySelectionMethods/BTUtilitySelectionMethod_Highest.h"
 #include "UtilitySelectionMethods/BTUtilitySelectionMethod_Proportional.h"
 
 
-UBTComposite_Utility::UBTComposite_Utility(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UBTComposite_Utility::UBTComposite_Utility()
 {
 	NodeName = "Utility";
 	bUseNodeActivationNotify = true;
@@ -42,22 +44,31 @@ FString UBTComposite_Utility::GetStaticDescription() const
 	}
 }
 
-const UBTDecorator_UtilityFunction* UBTComposite_Utility::FindChildUtilityFunction(int32 ChildIndex) const
+TOptional< FBTUtilityFunctionAccessor > UBTComposite_Utility::FindChildUtilityFunction(int32 ChildIndex) const
 {
 	auto const& ChildInfo = Children[ChildIndex];
 	for (auto Dec : ChildInfo.Decorators)
 	{
-		auto AsUtilFunc = Cast< UBTDecorator_UtilityFunction >(Dec);
-		if (AsUtilFunc)
+		// Take the first one. Multiple utility function decorators on a single node is a user
+		// error, and generates a warning in the behavior tree editor.
+		if(auto AsUtilFunc = Cast< UBTDecorator_UtilityFunction >(Dec))
 		{
-			// Take the first one. Multiple utility function decorators on a single node is a user
-			// error, and generates a warning in the behavior tree editor.
 			return AsUtilFunc;
+		}
+		else if(auto AsBPUtilFunc = Cast< UBTDecorator_UtilityBlueprintBase >(Dec))
+		{
+			return AsBPUtilFunc;
 		}
 	}
 
 	// Child does not have a utility function decorator
-	return nullptr;
+	return TOptional< FBTUtilityFunctionAccessor >();
+}
+
+TOptional< float > UBTComposite_Utility::EvaluateChildUtility(int32 ChildIndex, FBehaviorTreeSearchData& SearchData) const
+{
+	auto Accessor = FindChildUtilityFunction(ChildIndex);
+	return Accessor ? Accessor->EvaluateUtility(SearchData) : TOptional< float >();
 }
 
 #if 0
@@ -84,15 +95,13 @@ bool UBTComposite_Utility::ShouldConsiderChild(UBehaviorTreeComponent& OwnerComp
 bool UBTComposite_Utility::EvaluateUtilityScores(FBehaviorTreeSearchData& SearchData, TArray< float >& OutScores) const
 {
 	bool bIsNonZeroScore = false;
+
 	// Loop through utility children
 	for(int32 Idx = 0; Idx < GetChildrenNum(); ++Idx)
 	{
-		auto UtilityFunc = FindChildUtilityFunction(Idx);
-		
 		// Calculate utility value
-		auto Score = UtilityFunc ?
-			UtilityFunc->WrappedCalculateUtility(SearchData.OwnerComp, UtilityFunc->GetNodeMemory< uint8 >(SearchData)) :
-			0.0f;
+		auto EvaluationResult = EvaluateChildUtility(Idx, SearchData);		
+		auto Score = EvaluationResult.Get(0.0f);
 
 		OutScores.Add(Score);
 		bIsNonZeroScore = bIsNonZeroScore || Score > 0.0f;

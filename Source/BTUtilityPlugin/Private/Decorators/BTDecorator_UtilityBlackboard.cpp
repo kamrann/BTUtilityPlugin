@@ -6,8 +6,7 @@
 #include "BehaviorTree/Blackboard/BlackboardKeyType_Int.h"
 
 
-UBTDecorator_UtilityBlackboard::UBTDecorator_UtilityBlackboard(const FObjectInitializer& ObjectInitializer) :
-Super(ObjectInitializer)
+UBTDecorator_UtilityBlackboard::UBTDecorator_UtilityBlackboard()
 {
 	NodeName = "Blackboard Utility";
 

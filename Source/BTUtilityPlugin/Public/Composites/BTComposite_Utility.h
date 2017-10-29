@@ -22,7 +22,8 @@ struct FBTUtilityMemory : public FBTCompositeMemory
 	FUtilityExecutionOrdering ExecutionOrdering;
 };
 
-class UBTDecorator_UtilityFunction;
+
+class FBTUtilityFunctionAccessor;
 
 /** 
  * Utility selector node.
@@ -32,12 +33,15 @@ class UBTDecorator_UtilityFunction;
 UCLASS()
 class BTUTILITYPLUGIN_API UBTComposite_Utility: public UBTCompositeNode
 {
-	GENERATED_UCLASS_BODY()
+	GENERATED_BODY()
 
 public:
 	// Method used to determine child selection based on utility values
 	UPROPERTY(EditAnywhere, Category = "Utility")
 	EUtilitySelectionMethod SelectionMethod;
+
+public:
+	UBTComposite_Utility();
 
 public:
 	virtual void InitializeMemory(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, EBTMemoryInit::Type InitType) const override;
@@ -47,9 +51,15 @@ public:
 protected:
 	/**
 	Attempt to find a utility function attached to the specified child.
-	@return The utility function decorator, or nullptr if none was found.
+	@return The utility function accessor, or no value if no utility function was found.
 	*/
-	const UBTDecorator_UtilityFunction* FindChildUtilityFunction(int32 ChildIndex) const;
+	TOptional< FBTUtilityFunctionAccessor > FindChildUtilityFunction(int32 ChildIndex) const;
+
+	/**
+	Attempts to find a utility function attached to the specified child, then invoke its utility calculation.
+	@return The calculated utility value, or no value on failure.
+	*/
+	TOptional< float > EvaluateChildUtility(int32 ChildIndex, FBehaviorTreeSearchData& SearchData) const;
 
 	/**
 	Invoke utility function for each child and store all the utility values.

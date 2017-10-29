@@ -4,13 +4,14 @@
 #include "BehaviorTree/BTCompositeNode.h"
 
 
-UBTDecorator_UtilityFunction::UBTDecorator_UtilityFunction(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+UBTDecorator_UtilityFunction::UBTDecorator_UtilityFunction()
 {
 	NodeName = "UnknownUtilityFunction";
 
-	bAllowAbortNone = false;
+/*	bAllowAbortNone = false;
 	bAllowAbortLowerPri = false;
 	bAllowAbortChildNodes = false;
+	*/
 }
 
 float UBTDecorator_UtilityFunction::CalculateUtilityValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const
