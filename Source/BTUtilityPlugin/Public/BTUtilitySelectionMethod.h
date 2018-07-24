@@ -2,7 +2,7 @@
 #pragma once
 
 #include "BTUtilityTypes.h"
-#include "Object.h"
+#include "UObject/Object.h"
 #include "BTUtilitySelectionMethod.generated.h"
 
 
