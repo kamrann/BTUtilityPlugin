@@ -1,7 +1,7 @@
 // Copyright 2015 Cameron Angus. All Rights Reserved. /
 #pragma once
 
-#include "BTDecorator_UtilityFunction.h"
+#include "Decorators/BTDecorator_UtilityFunction.h"
 #include "BTDecorator_UtilityConstant.generated.h"
 
 /**
