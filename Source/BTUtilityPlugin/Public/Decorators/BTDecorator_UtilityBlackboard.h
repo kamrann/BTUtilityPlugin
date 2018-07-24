@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Decorators/BTDecorator_UtilityFunction.h"
+#include "BTDecorator_UtilityFunction.h"
 #include "BTDecorator_UtilityBlackboard.generated.h"
 
 
