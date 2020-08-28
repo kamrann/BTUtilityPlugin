@@ -24,7 +24,12 @@ UBTDecorator_UtilityBlueprintBase::UBTDecorator_UtilityBlueprintBase(const FObje
 
 float UBTDecorator_UtilityBlueprintBase::CalculateUtilityValue(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) const
 {
-	return CalculateUtility(AIOwner, Cast< APawn >(ActorOwner));
+	APawn* ControlledPawn = nullptr;
+	if (AIOwner)
+	{
+		ControlledPawn = AIOwner->GetPawn();
+	}
+	return CalculateUtility(AIOwner, ControlledPawn);
 }
 
 FString UBTDecorator_UtilityBlueprintBase::GetStaticDescription() const
